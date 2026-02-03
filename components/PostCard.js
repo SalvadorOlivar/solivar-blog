@@ -1,8 +1,13 @@
-export default function PostCard() {
+import Link from 'next/link';
+
+export default function PostCard(props) {
+  const { post } = props;
   return (
-    <Link href="">
-      <h2>Sample Post Title</h2>
-      <p>This is a brief excerpt from the sample post.</p>
+    <Link className="unstyled" href={`/posts/${post.slug}`}>
+      <div className='postCard'>
+        <h3>{post.title}</h3>
+        <p>{post.description}</p>
+      </div>
     </Link>
   );
 }

@@ -16,5 +16,7 @@ export default function getPostMetadata(basePath) {
             date: matterResult.data.date,
             slug: fileName.replace('.md', '')
         }
-    }
+    })
+
+    return posts
 }
