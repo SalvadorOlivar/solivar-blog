@@ -14,6 +14,11 @@ export default function getPostMetadata(basePath) {
             title: matterResult.data.title,
             description: matterResult.data.description,
             date: matterResult.data.date,
+            tags: typeof matterResult.data.tags === 'string'
+                ? matterResult.data.tags.split(',').map(tag => tag.trim()).filter(Boolean)
+                : Array.isArray(matterResult.data.tags)
+                    ? matterResult.data.tags
+                    : [],
             slug: fileName.replace('.md', '')
         }
     })

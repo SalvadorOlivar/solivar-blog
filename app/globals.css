@@ -38,6 +38,24 @@ main {
 }
 
 .postsContainer {
+
+/* Tags styles for PostCard */
+.tags-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.tag-badge {
+  background: #f0f0f0;
+  border-radius: 12px;
+  padding: 0.2em 0.7em;
+  font-size: 0.85em;
+  color: #333;
+  border: 1px solid #ddd;
+  display: inline-block;
+}
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 14px;
