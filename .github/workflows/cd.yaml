@@ -17,43 +17,48 @@ env:
   ECS_SERVICE: pulumi-dev-service
   ECS_CLUSTER: pulumi-dev-cluster-0ad512a
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
-  build-and-push-docker-image:
-    name: Build and Push to DockerHub
-    runs-on: ubuntu-24.04
-    outputs:
-      image-tag: ${{ steps.meta.outputs.image-tag }}
-      image-uri: ${{ steps.push.outputs.image-uri }}
+  # build-and-push-docker-image:
+  #   name: Build and Push to DockerHub
+  #   runs-on: ubuntu-24.04
+  #   outputs:
+  #     image-tag: ${{ steps.meta.outputs.image-tag }}
+  #     image-uri: ${{ steps.push.outputs.image-uri }}
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ env.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+  #   - name: Log in to Docker Hub
+  #     uses: docker/login-action@v3
+  #     with:
+  #       username: ${{ env.DOCKER_USERNAME }}
+  #       password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Extract metadata (tags, labels) for Docker
-      id: meta
-      uses: docker/metadata-action@v3
-      with:
-        images: homosapiensother/solivar-blog
+  #   - name: Extract metadata (tags, labels) for Docker
+  #     id: meta
+  #     uses: docker/metadata-action@v3
+  #     with:
+  #       images: homosapiensother/solivar-blog
 
-    - name: Build and push Docker image
-      id: push
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+  #   - name: Build and push Docker image
+  #     id: push
+  #     uses: docker/build-push-action@v3
+  #     with:
+  #       context: .
+  #       file: ./Dockerfile
+  #       push: true
+  #       tags: ${{ steps.meta.outputs.tags }}
+  #       labels: ${{ steps.meta.outputs.labels }}
 
   update-ecs-service:
     name: Update ECS Service
     runs-on: ubuntu-24.04
+    #needs: [ build-and-push-docker-image ]
 
     steps:
     - name: Configure AWS credentials
