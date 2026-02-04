@@ -8,8 +8,17 @@ on:
     branches:
       - main
 
+env:
+  DOCKER_USERNAME: homosapiensother
+  AWS_ROLE_ARN: arn:aws:iam::125832268136:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS
+  AWS_REGION: us-east-1
+  TASK_DEFINITION: pulumi-dev-task-definition-nginx
+  CONTAINER_NAME: pulumi-dev-nginx
+  ECS_SERVICE: pulumi-dev-service
+  ECS_CLUSTER: pulumi-dev-cluster-0ad512a
+
 jobs:
-  build-and-push:
+  build-and-push-docker-image:
     name: Build and Push to DockerHub
     runs-on: ubuntu-24.04
     outputs:
@@ -23,7 +32,7 @@ jobs:
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:
-        username: ${{ vars.DOCKER_USERNAME }}
+        username: ${{ env.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Extract metadata (tags, labels) for Docker
@@ -42,9 +51,35 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
 
-    - name: Generate artifact attestation
-      uses: actions/attest-build-provenance@v3
+  update-ecs-service:
+    name: Update ECS Service
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
       with:
-        subject-name: index.docker.io/homosapiensother/solivar-blog:${{ steps.meta.outputs.tags }}
-        subject-digest: ${{ steps.push.outputs.digest }}
-        push-to-registry: true
+        role-to-assume: ${{ env.AWS_ROLE_ARN }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Download current task definition
+      run: |
+        aws ecs describe-task-definition \
+          --task-definition ${{ env.TASK_DEFINITION }} \
+          --query taskDefinition > task-definition.json
+
+    - name: Update task definition with new image
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ needs.build-and-push-docker-image.outputs.image-uri }}
+
+    - name: Deploy to Amazon ECS service
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
