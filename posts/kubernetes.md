@@ -1,5 +1,5 @@
 ---
-title: ¿Qué es Kubernetes?
+title: Kubernetes
 description: Kubernetes es un sistema de orquestación de contenedores de código abierto que automatiza el despliegue, la gestión y el escalado de aplicaciones en contenedores.
 date: Dic/19/25
 tags: devops

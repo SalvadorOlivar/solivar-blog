@@ -23,7 +23,6 @@ export const generateStaticParams = async () => {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const id = slug ? ' · ' + slug : '';
-  console.log(id);
   return {
     title: `Solivar Blog ${id.replace(/_/g, ' ')}`
   };

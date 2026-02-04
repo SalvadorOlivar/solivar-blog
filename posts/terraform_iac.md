@@ -1,5 +1,5 @@
 ---
-title: ¿Qué es Terraform?
+title: Terraform IaC
 description: Terraform es una herramienta de infraestructura como código (IaC) de código abierto que permite definir, aprovisionar y gestionar infraestructura en la nube y local de manera declarativa.
 date: Feb/3/2016
 tags: iac,devops,cloud

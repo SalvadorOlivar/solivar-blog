@@ -1,5 +1,5 @@
 ---
-title: ¿Qué es AWS?
+title: AWS Cloud
 description: AWS (Amazon Web Services) es la plataforma de servicios en la nube de Amazon que ofrece computación, almacenamiento, bases de datos, redes, inteligencia artificial y más, bajo demanda y con pago por uso.
 date: Feb/3/2016
 tags: cloud
