@@ -1,0 +1,28 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: {{ .Release.Name }}-route
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingressClassName: envoy
+  http:
+    - name: {{ .Release.Name }}-route
+      priority: {{ .Values.route.priority}}
+      match:
+        hosts:
+          - {{ .Values.route.host }}
+        paths:
+          - {{ .Values.route.path }}
+      backends:
+        - serviceName: {{ .Release.Name }}
+          servicePort: {{ .Values.service.port }}
+      plugins:
+        - name: cors
+          enable: true
+          config:
+            allow_origins: {{ .Values.cors.allow_origins }}
+            allow_methods: {{ .Values.cors.allow_methods }}
+            allow_headers: {{ .Values.cors.allow_headers }}
+            expose_headers: {{ .Values.cors.expose_headers }}
+            allow_credential: {{ .Values.cors.allow_credential }}
+            max_age: {{ .Values.cors.max_age }}

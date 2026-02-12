@@ -1,0 +1,20 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: solivar-blog
+  namespace: default
+spec:
+  image: nginx
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: solivar-blog
+  namespace: default
+spec:
+  imageRepositoryRef:
+    name: solivar-blog
+  policy:
+    semver:
+      range: 1.x.x
