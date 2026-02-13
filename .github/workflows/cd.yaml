@@ -7,12 +7,14 @@ on:
     paths-ignore:
       - 'helm/**'
       - 'kustomize/**'
+      - '.github/workflows/**'
   pull_request:
     branches:
       - main
     paths-ignore:
       - 'helm/**'
       - 'kustomize/**'
+      - '.github/workflows/**'
 
 env:
   DOCKER_USERNAME: homosapiensother
