@@ -2,7 +2,7 @@ deployment:
   replicas: 1
   image:
     repository: homosapiensother/solivar-blog
-    tag: main-15
+    tag: main-21
   resources:
     requests:
       cpu: "100m"
