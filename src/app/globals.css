@@ -39,6 +39,14 @@ footer {
   width: 100%;
 }
 
+/* Imágenes dentro del contenido markdown */
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+}
+
 header a {
   color: inherit;
   text-decoration: none;

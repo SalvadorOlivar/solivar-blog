@@ -34,7 +34,7 @@ export default async function PostPage({ params }) {
   const post = getPostContent(slug);
   return (
     <main>
-      <article>
+      <article className="markdown-content">
         <ReactMarkdown>{post.content}</ReactMarkdown>
       </article>
     </main>
