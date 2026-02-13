@@ -1,7 +1,7 @@
 
 FROM node:20-alpine AS builder
 WORKDIR /app
-COPY package.json package-lock.json* ./
+COPY package.json pnpm-lock.yaml* ./
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pnpm install --frozen-lockfile
 COPY . .
@@ -15,6 +15,6 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
-COPY --from=builder /app/posts ./posts
+COPY --from=builder /app/src/posts ./posts
 EXPOSE 3000
 CMD ["npx", "next", "start"]
