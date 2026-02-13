@@ -45,9 +45,9 @@ autoscaling:
 
 certificate:
   enabled: false
-  dnsName: "example.com"
+  dnsName: "solivar.com"
 
 route:
   priority: 1
-  host: "example.com"
+  host: "solivar.com"
   path: "/"
