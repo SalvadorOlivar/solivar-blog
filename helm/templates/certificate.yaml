@@ -11,17 +11,4 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - {{ .Values.certificate.dnsName }}
----
-apiVersion: apisix.apache.org/v2
-kind: ApisixTls
-metadata:
-  name: {{ .Release.Name }}-tls
-  namespace: {{ .Release.Namespace }}
-spec:
-  ingressClassName: apisix
-  hosts:
-    - {{ .Values.certificate.dnsName }}
-  secret:
-    name: {{ .Release.Name }}-tls
-    namespace: {{ .Release.Namespace }}
 {{- end }}
