@@ -8,9 +8,11 @@ metadata:
 spec:
   parentRefs:
     - name: envoy-gateway
+      namespace: envoy-gateway-system
   hostnames:
     - {{ .Values.route.host }}
   rules:
     - backendRefs:
         - name: {{ .Release.Name }}
           port: {{ .Values.service.port }}
+          namespace: {{ .Release.Namespace }}
