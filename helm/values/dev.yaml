@@ -1,23 +1,23 @@
 deployment:
   replicas: 1
   image:
-    repository: nginx
-    tag: latest
+    repository: homosapiensother/solivar-blog
+    tag: main-15
   resources:
     requests:
       cpu: "100m"
       memory: "128Mi"
     limits:
-      cpu: "500m"
+      cpu: "1000m"
       memory: "512Mi"
   containerPort: 3000
 
 service:
-  port: 3000
-  targetPort: 3000
+  port: "3000"
+  targetPort: "3000"
 
 config:
-  enabled: true
+  enabled: false
   entries:
     EXAMPLE_KEY: "example-value"
 
@@ -26,7 +26,7 @@ secret:
 
 autoscaling:
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 3
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
   behavior:

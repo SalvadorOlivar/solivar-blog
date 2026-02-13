@@ -4,17 +4,19 @@ metadata:
   name: solivar-blog
   namespace: argocd
 spec:
-  project: default
-  source:
-    repoURL: 'https://github.com/tu-org/tu-repo.git'
-    targetRevision: HEAD
-    path: kustomize
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: default
+    namespace: solivar-blog
+    server: https://kubernetes.default.svc
+  source:
+    path: helm
+    repoURL: https://github.com/SalvadorOlivar/solivar-blog.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values/dev.yaml
+  sources: []
+  project: default
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    automated: null
     syncOptions:
       - CreateNamespace=true
