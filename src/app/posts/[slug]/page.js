@@ -1,10 +1,11 @@
 import fs from "fs";
-import getPostMetadata from "@/utils/getPostMetadata";
+import getPostMetadata from "../../../utils/getPostMetadata";
 import React from "react";
 import matter from "gray-matter";
+import ReactMarkdown from "react-markdown";
 
 function getPostContent(slug) {
-  const folder = "posts/";
+  const folder = "src/posts/";
   const file = folder + `${slug}.md`;
   const content = fs.readFileSync(file, "utf8");
 
@@ -14,7 +15,7 @@ function getPostContent(slug) {
 }
 
 export const generateStaticParams = async () => {
-  const posts = getPostMetadata("posts");
+  const posts = getPostMetadata("src/posts");
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -29,14 +30,13 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function PostPage({ params }) {
- 
-    const { slug } = await params;
-    const post = getPostContent(slug)
-    return (
-        <main>
-            <article>
-                {post.content}
-            </article>
-        </main>
-    )
+  const { slug } = await params;
+  const post = getPostContent(slug);
+  return (
+    <main>
+      <article>
+        <ReactMarkdown>{post.content}</ReactMarkdown>
+      </article>
+    </main>
+  );
 }

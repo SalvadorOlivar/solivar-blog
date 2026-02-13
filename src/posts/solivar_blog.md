@@ -7,6 +7,7 @@ tags: typescript
 
 ## About this Blog
 
+
 The intention behind this blog is to document my learning journey and share insights about the technologies I explore. I wanted to learn TypeScript, and what better way to do so than through a mini-project?
 
 This project allowed me to get hands-on experience with Next.js and TypeScript. As a first encounter with these technologies, it has been a valuable learning experience. I hope to continue improving and expanding my knowledge in the future.

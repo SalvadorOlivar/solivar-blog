@@ -1,5 +1,8 @@
 import Link from "next/link";
 import "./globals.css";
+import { Zain } from "next/font/google";
+
+const zain = Zain({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
   title: "Solivar Blog",
@@ -23,8 +26,8 @@ export default function RootLayout({ children }) {
   )
 
   return (
-    <html lang="en">
-      <body className="{inter.className}">
+    <html className={zain.className} lang="en">
+      <body>
         {header}
         {children}
         {footer}
