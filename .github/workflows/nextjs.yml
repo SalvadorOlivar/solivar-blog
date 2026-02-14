@@ -61,6 +61,7 @@ jobs:
       - name: Setup pnpm (if applicable)
         if: ${{ steps.detect-package-manager.outputs.manager == 'pnpm' }}
         run: |
+          npm install -g pnpm
           corepack enable
           corepack prepare pnpm@latest --activate
       - name: Restore cache
