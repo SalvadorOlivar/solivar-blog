@@ -45,9 +45,9 @@ autoscaling:
 
 certificate:
   enabled: false
-  dnsName: "solivar.com"
+  dnsName: "solivar-blog.com"
 
 route:
   priority: 1
-  host: "solivar.com"
+  host: "solivar-blog.com"
   path: "/"
