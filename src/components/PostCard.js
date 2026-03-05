@@ -9,8 +9,8 @@ export default function PostCard(props) {
         <p>{post.description}</p>
         <span>{post.date}</span>
         <div className="tags-container">
-          {post.tags.map((tag, idx) => (
-            <span key={idx} className="tag-badge">{tag}</span>
+          {post.tags.map((tag) => (
+            <span key={`${post.slug}-${tag}`} className="tag-badge">{tag}</span>
           ))}
         </div>
       </div>

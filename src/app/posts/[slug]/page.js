@@ -1,12 +1,12 @@
 import fs from "fs";
+import path from "path";
 import getPostMetadata from "../../../utils/getPostMetadata";
-import React from "react";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 
 function getPostContent(slug) {
-  const folder = "src/posts/";
-  const file = folder + `${slug}.md`;
+  const folder = path.join(process.cwd(), "src", "posts");
+  const file = path.join(folder, `${slug}.md`);
   const content = fs.readFileSync(file, "utf8");
 
   const matterResult = matter(content);
@@ -23,9 +23,9 @@ export const generateStaticParams = async () => {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const id = slug ? ' · ' + slug : '';
+  const id = slug ? " - " + slug : "";
   return {
-    title: `Solivar Blog ${id.replace(/_/g, ' ')}`
+    title: `Solivar Blog ${id.replace(/_/g, " ")}`,
   };
 }
 

@@ -1,7 +1,7 @@
 ---
 title: Solivar Blog NextJS 
 description: This blog documents my journey learning TypeScript and Next.js through a hands-on project.
-date: Feb/6/26
+date: 2026-02-06
 tags: typescript
 ---
 

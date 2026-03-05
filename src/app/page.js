@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <main>
       <div className='postsContainer'>
-        {postMetadata.map((post, postIndex) => {
+        {postMetadata.map((post) => {
           return (
-            <PostCard key={postIndex} post={post} />
+            <PostCard key={post.slug} post={post} />
           );
         })}
       </div>

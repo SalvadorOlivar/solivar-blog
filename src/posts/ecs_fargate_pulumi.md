@@ -1,7 +1,7 @@
 ---
 title: ECS Fargate with Pulumi
 description: Learn how to leverage Pulumi to deploy containerized applications on AWS ECS with Fargate. This post explores the process of creating scalable, serverless infrastructure for your workloads, highlighting the benefits of Pulumi's infrastructure-as-code approach combined with the flexibility of AWS Fargate.
-date: Feb/6/2026
+date: 2026-02-06
 tags: cloud,iac,typescript,container
 ---
 
