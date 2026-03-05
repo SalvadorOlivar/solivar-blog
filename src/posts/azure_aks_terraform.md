@@ -2,7 +2,7 @@
 title: Azure AKS with Terraform
 description: This page explains how to provision a production-ready Azure Kubernetes Service (AKS) cluster using Terraform, with automated CI/CD via Azure DevOps and GitOps application management using ArgoCD.
 date: 2026-02-03
-tags: azure,azure-devops,terraform,argocd,api-gateway
+tags: azure,azure-devops,terraform,argocd
 ---
 # Introduction
 This project provisions an Azure Kubernetes Service (AKS) cluster in Azure, designed to deliver a production-ready infrastructure using Terraform. The solution leverages Azure DevOps for deployment, integrates GitOps methodologies, utilizes Azure DevOps Pipelines, and automates as many steps as possible for both infrastructure and application management.

@@ -258,13 +258,23 @@ main {
   top: 12px;
   right: 12px;
   z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--border);
-  border-radius: 9999px;
+  border-radius: 50%;
   background: var(--surface);
   color: var(--text);
-  padding: 6px 12px;
-  font-size: 13px;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
   cursor: pointer;
+}
+
+.themeIcon {
+  transform: translateY(-1px);
 }
 
 footer {
