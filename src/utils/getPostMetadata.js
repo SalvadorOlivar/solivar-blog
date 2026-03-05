@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import estimateReadingTime from './estimateReadingTime';
 
 export default function getPostMetadata(basePath) {
     const folder = path.join(process.cwd(), basePath);
@@ -20,6 +21,7 @@ export default function getPostMetadata(basePath) {
             title: matterResult.data.title,
             description: matterResult.data.description,
             date: normalizedDate,
+            readingTimeMinutes: estimateReadingTime(matterResult.content),
             tags: typeof matterResult.data.tags === 'string'
                 ? matterResult.data.tags.split(',').map(tag => tag.trim()).filter(Boolean)
                 : Array.isArray(matterResult.data.tags)
