@@ -43,7 +43,7 @@ export default function PostsExplorer({ posts }) {
         <input
           type="search"
           className="searchInput"
-          placeholder="Buscar por titulo, descripcion o tag"
+          placeholder="Search for title, description, or tags..."
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
@@ -54,7 +54,7 @@ export default function PostsExplorer({ posts }) {
             className={`tagFilter ${selectedTag === "all" ? "is-active" : ""}`}
             onClick={() => setSelectedTag("all")}
           >
-            Todas
+            All
           </button>
 
           {tags.map((tag) => (
@@ -78,14 +78,14 @@ export default function PostsExplorer({ posts }) {
               setSelectedTag("all");
             }}
           >
-            Limpiar filtros
+            Clear Filters
           </button>
         ) : null}
       </section>
 
       {filteredPosts.length === 0 ? (
         <p className="emptyState">
-          No hay resultados para los filtros actuales.
+          No results for the current filters.
         </p>
       ) : null}
 
