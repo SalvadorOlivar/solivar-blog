@@ -1,7 +1,7 @@
 ---
 title: Platform Engineer
 description: This post describes and documents my learning of Platform Engineer,what is my experiencie doing platform enginner and how I solved this problems with differents companys that I worked on.
-date: 2026-03-06
+date: 2026-03-25
 tags: platform-engineer, cloud, typescript, k8s
 ---
 ## My Experience with Platform Engineering
