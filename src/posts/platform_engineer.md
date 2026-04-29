@@ -41,3 +41,31 @@ However, this time the context was different: it was a smaller organization with
 With the rise of AI and powerful development agents, I was inspired to replicate the SaaS model I had implemented in my previous company, but by building an internal development platform tailored to our needs. The idea was to create a product for our developers that directly addressed their daily pain points, with a product vision focused on my internal clients—the developers in my organization.
 
 I began developing this internal platform based on the needs of my team and, most importantly, the needs of the developers themselves.
+
+## PoC doing Vibe Coding until works!
+With the lessons from my previous company's platform fresh in mind, I began using Codex to build this new internal solution. My goal was to create something that ran natively on Kubernetes, starting with Next.js to prototype the initial release quickly. As the platform evolved, I gradually transitioned it toward a microservices architecture for better scalability and maintainability.
+
+For data persistence, I used AWS RDS with PostgreSQL, and for authentication, I implemented Azure Entra ID app registrations to enable SSO—leveraging the identity infrastructure our organization already had in place.
+
+Within about a week and after several iterations with Codex, I had successfully built a functional platform that exceeded my expectations. I was satisfied with both the progress and the solid foundation we had established.
+
+## Platform Architecture
+
+In my view, the platform's architecture is quite straightforward. It runs on an EKS cluster dedicated to internal tools for the organization, particularly the SRE team.
+
+For each cluster we want to manage, we install a pod that acts as an agent. This agent handles synchronization between the clusters and the platform, as well as executing actions like restarting pods.
+
+The platform also includes a microservice responsible for managing various entities, such as users, clusters, clients, and roles. This presented a challenge in terms of access control—for instance, ensuring that certain users can only view clusters for the clients they work with, while admins have full visibility and the ability to add new clusters to the platform.
+
+All Kubernetes-related functionalities are handled by a separate microservice. This service performs actions within the cluster, communicates with the agents, and displays relevant Kubernetes information.
+
+As I progressed, I added useful sub-features, such as centralized agent management, allowing updates to all clusters from a single location.
+
+For user authentication, I created groups in Entra ID for each client and added the corresponding developers to those groups. They can then log in easily using their Microsoft email. This approach is very similar to Grafana's SSO, utilizing groups, assigning roles to those Entra ID groups, and then mapping those roles within the platform.
+
+## Real world usage.
+Once I was satisfied with the results, I shared the platform with colleagues who would undoubtedly find it incredibly useful. Without needing any Kubernetes expertise, they could access the clusters in a controlled way, eliminating the hassle of downloading cluster credentials locally into kubeconfig, using tools like OpenLens or Lens, or even kubectl.
+
+This gave them clear visibility into their applications, transforming what had been a black box into something accessible and transparent.
+
+For them, being able to see that a pod was running, check the app's environment variables, view CPU and memory charts, and access a dedicated logs section was more than enough—it significantly streamlined their development process.
