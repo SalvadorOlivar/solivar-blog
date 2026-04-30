@@ -24,9 +24,9 @@ When certain tasks can be delegated to developers, they must be done in a secure
 
 With these well-defined problems, we were able to search for tools that could help us solve them.
 
-At the time, there were only a few options available, such as Rancher. However, these solutions were limited by their difficult configuration and required significant effort from the team to implement and maintain, especially since they were self-hosted.
-
 ## Evaluating SaaS Solutions
+
+At the time, there were only a few options available, such as Rancher. However, these solutions were limited by their difficult configuration and required significant effort from the team to implement and maintain, especially since they were self-hosted.
 
 Other options we considered included adopting SaaS (Software as a Service) platforms that address these challenges. These solutions require no maintenance from our side and typically come with a support contract, ensuring the platform is maintained and providing assistance for any issues or questions that arise during both implementation and operation.
 
@@ -64,7 +64,7 @@ As I progressed, I added useful sub-features, such as centralized agent manageme
 For user authentication, I created groups in Entra ID for each client and added the corresponding developers to those groups. They can then log in easily using their Microsoft email. This approach is very similar to Grafana's SSO, utilizing groups, assigning roles to those Entra ID groups, and then mapping those roles within the platform.
 
 ## Real world usage.
-Once I was satisfied with the results, I shared the platform with colleagues who would undoubtedly find it incredibly useful. Without needing any Kubernetes expertise, they could access the clusters in a controlled way, eliminating the hassle of downloading cluster credentials locally into kubeconfig, using tools like OpenLens or Lens, or even kubectl.
+Once I was satisfied with the results, I shared the platform with colleagues who would undoubtedly find it incredibly useful. Without needing any Kubernetes expertise, they could access the clusters in a controlled way, eliminating the hassle of downloading cluster credentials locally into kubeconfig, using tools like OpenLens or K9S, or even kubectl.
 
 This gave them clear visibility into their applications, transforming what had been a black box into something accessible and transparent.
 
