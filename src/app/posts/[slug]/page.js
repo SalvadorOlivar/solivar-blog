@@ -21,10 +21,17 @@ function getPostContent(slug) {
   const normalizedDate =
     rawDate instanceof Date ? rawDate.toISOString().slice(0, 10) : String(rawDate ?? "");
 
+  const tags = typeof matterResult.data.tags === 'string'
+    ? matterResult.data.tags.split(',').map(tag => tag.trim()).filter(Boolean)
+    : Array.isArray(matterResult.data.tags)
+      ? matterResult.data.tags.map(tag => String(tag).trim()).filter(Boolean)
+      : [];
+
   return {
     ...matterResult,
     data: {
       ...matterResult.data,
+      tags,
       date: normalizedDate,
       readingTimeMinutes: estimateReadingTime(matterResult.content),
     },
@@ -66,19 +73,25 @@ export default async function PostPage({ params }) {
   const description = post.data.description || "";
 
   return (
-    <main>
-      <article className="markdown-content">
-        <header className="postHeader">
-          <h1>{title}</h1>
-          <div className="postMeta">
-            <span>{formatPostDate(post.data.date)}</span>
-            <span aria-hidden="true">-</span>
-            <span>{post.data.readingTimeMinutes} min de lectura</span>
+    <article className="markdown-content">
+      <header className="postHeader">
+        <h1>{title}</h1>
+        <div className="postMeta">
+          <span>{formatPostDate(post.data.date)}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.data.readingTimeMinutes} min de lectura</span>
+        </div>
+        {description ? <p className="postDescription">{description}</p> : null}
+        {post.data.tags && post.data.tags.length > 0 ? (
+          <div className="postTags">
+            {post.data.tags.map((tag) => (
+              <span key={tag} className="tagBadge">{tag}</span>
+            ))}
           </div>
-          {description ? <p className="postDescription">{description}</p> : null}
-        </header>
-        <ReactMarkdown>{post.content}</ReactMarkdown>
-      </article>
-    </main>
+        ) : null}
+      </header>
+
+      <ReactMarkdown>{post.content}</ReactMarkdown>
+    </article>
   );
 }

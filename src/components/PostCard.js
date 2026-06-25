@@ -1,24 +1,33 @@
-import Link from 'next/link';
-import formatPostDate from '../utils/formatPostDate';
+import Link from "next/link";
+import formatPostDate from "../utils/formatPostDate";
 
 export default function PostCard(props) {
-  const { post } = props;
+  const { post, index = 0 } = props;
   const readingTimeMinutes = post.readingTimeMinutes ?? 1;
 
   return (
     <Link className="unstyled" href={`/posts/${post.slug}`}>
-      <div className='postCard'>
-        <h3>{post.title}</h3>
-        <p>{post.description}</p>
-        <div className="postMeta">
-          <span>{formatPostDate(post.date)}</span>
-          <span aria-hidden="true">-</span>
-          <span>{readingTimeMinutes} min de lectura</span>
+      <div
+        className="postCard animate-in"
+        style={{ animationDelay: `${index * 60}ms` }}
+      >
+        <div className="postCardLeft">
+          <div className="postCardTitle">{post.title}</div>
+          <p className="postCardDescription">{post.description}</p>
+          {post.tags.length > 0 && (
+            <div className="postCardTags">
+              {post.tags.map((tag) => (
+                <span key={`${post.slug}-${tag}`} className="postCardTag">#{tag}</span>
+              ))}
+            </div>
+          )}
         </div>
-        <div className="tags-container">
-          {post.tags.map((tag) => (
-            <span key={`${post.slug}-${tag}`} className="tag-badge">{tag}</span>
-          ))}
+        <div className="postCardRight">
+          <div className="postCardMeta">
+            <span>{formatPostDate(post.date)}</span>
+            <span className="postCardMetaDot">·</span>
+            <span>{readingTimeMinutes} min</span>
+          </div>
         </div>
       </div>
     </Link>

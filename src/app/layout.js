@@ -1,9 +1,25 @@
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
-import { Zain } from "next/font/google";
 import ThemeToggle from "../components/ThemeToggle";
 
-const zain = Zain({ subsets: ["latin"], weight: ["400"] });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600"],
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "500"],
+});
 
 export const metadata = {
   title: "Solivar Blog",
@@ -21,31 +37,31 @@ const themeInitScript = `
 `;
 
 export default function RootLayout({ children }) {
-
-  let header = (
-    <header className="blog-header">
-      <Link href="/" className="header-link">
-        <h1>Solivar Blog</h1>
-      </Link>
-    </header>
-  )
-
-  let footer = (
-    <footer>
-      <p>© 2026 Solivar Blog</p>
-    </footer>
-  )
-
   return (
-    <html className={zain.className} lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable} ${inter.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
-        <ThemeToggle />
-        {header}
-        {children}
-        {footer}
+        <div className="pageWrapper">
+          <nav className="blogNav">
+            <div className="navInner">
+              <Link href="/" className="navBrand">
+                <span className="navLogo">S</span>
+                Solivar Blog
+              </Link>
+              <div className="navActions">
+                <ThemeToggle />
+              </div>
+            </div>
+          </nav>
+          <main className="contentArea">
+            {children}
+          </main>
+          <footer className="blogFooter">
+            <p>&copy; {new Date().getFullYear()} Solivar Blog</p>
+          </footer>
+        </div>
       </body>
     </html>
   );
