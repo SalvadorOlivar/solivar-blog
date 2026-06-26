@@ -69,3 +69,23 @@ Once I was satisfied with the results, I shared the platform with colleagues who
 This gave them clear visibility into their applications, transforming what had been a black box into something accessible and transparent.
 
 For them, being able to see that a pod was running, check the app's environment variables, view CPU and memory charts, and access a dedicated logs section was more than enough—it significantly streamlined their development process.
+
+## Improving the platform
+Over the following months, and once we had a solid idea, I began working closely with developers to improve the platform.
+
+Before adding new features, it was necessary to improve the repository structure—especially how the code was organized. Vibe coding delivers functional results fast, but without clear direction it tends to create brute-force solutions. As the platform evolved, this led to dead code, redundant pieces that were no longer used, and tests that ultimately did not add real value.
+
+The first step was learning to work with a developer team. I found there are important differences between doing SRE work and developing software. When everyone is working on the same codebase, branch management becomes much more important, and communication is essential. The same may be true for Terraform code, but an application is much more complex in my opinion.
+
+Development work is also more creative, so debating ideas around new functionality and driving platform improvement is about much more than just infrastructure. In infrastructure there are usually a few clear paths to follow, while in software development there are many more possibilities to explore.
+
+Another important lesson I learned was that the more you understand the problem you are working on, the better the results you get when working with AI. Better knowledge allows you to give clearer instructions and better context to the AI, so it can do what it does best: write code. By this time, the artisanal part of software development was already being dominated by AgentAI, because what an experienced developer used to take weeks to do, AI could now do in a few hours.
+
+So I started focusing even more on architecture, understanding how programming languages work with online courses from [Fernando Herrera, DevTalles](https://cursos.devtalles.com/) , design patterns, code architecture, and better ways to organize code such as Hexagonal Architecture. I began reading books on O’Reilly such as [Fundamentals of Software Architecture, 2nd Edition](https://learning.oreilly.com/library/view/fundamentals-of-software/9781098175504/), [Learning Domain-Driven Design](https://learning.oreilly.com/library/view/learning-domain-driven-design/9781098100124/), and [Fundamentals of Software Engineering](https://learning.oreilly.com/library/view/fundamentals-of-software/9781098143220/).
+
+I’m going to write more about my journey toward software architecture in another post and expand on certain topics in future posts.
+
+Working with other developers made my work exponentially better. It brought in experience, made the work more robust and complete, and created a sense within the team that what we were building was truly great.
+
+In conclusion, this experience gave me a lot. It opened up a range of new possibilities for my career, renewed my enthusiasm for creating, and taught me things I did not know before.
+
